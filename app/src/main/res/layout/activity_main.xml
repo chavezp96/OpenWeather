@@ -15,6 +15,7 @@
         />
 
     <TextView
+        android:id="@+id/tv_temp"
         android:text="25"
         android:textSize="48sp"
         android:layout_width="wrap_content"
