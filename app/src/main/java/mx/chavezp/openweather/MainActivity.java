@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView tv_temp = findViewById(R.id.tv_temp);
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://localhost/ejemplo/get_clima.php";
+        String url = "http://192.168.1.68/clima";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
                             if (response.has("main")) {
                                 JSONObject main = response.getJSONObject("main");
-                                Double temp = main.getDouble("temp");
+                                Double t = main.getDouble("temp");
+                                int temp = t.intValue();
 
                                 tv_temp.setText("" + temp + " \u00b0" + "C");
                             }
@@ -65,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d(TAG,error.getMessage());
-
                     }
                 });
         queue.add(jsonObjectRequest);
