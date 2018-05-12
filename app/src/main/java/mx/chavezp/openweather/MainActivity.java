@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         final ImageView iv_weather = findViewById(R.id.iv_weather);
         final TextView tv_temp = findViewById(R.id.tv_temp);
+        final TextView tv_city = findViewById(R.id.tv_city);
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "http://192.168.1.68/clima";
@@ -39,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         try {
+                            if (response.has("name")){
+                                String city = response.getString("name");
+                                tv_city.setText("" + city);
+                            }
                             if (response.has("weather")) {
                                 JSONArray weatherArray = response.getJSONArray("weather");
                                 JSONObject weather = weatherArray.getJSONObject(0);
