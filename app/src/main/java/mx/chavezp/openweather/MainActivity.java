@@ -31,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
         final TextView tv_city = findViewById(R.id.tv_city);
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.68/clima";
+        /* Se coloca la IP pública del equipo donde se aloja el archivo index.php para su
+            acceso desde cualquier red. */
+        String url = "http://187.233.208.125/clima";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
